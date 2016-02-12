@@ -25,7 +25,7 @@ public final class ComputationTree<V> {
     }
 
     public static <V> ComputationTree<V> constant(final V v) {
-        return new ComputationTree<V>(ImmutableList.<ComputationTree<?>>of(), (input) -> Either.left(v));
+        return new ComputationTree<>(ImmutableList.<ComputationTree<?>>of(), (input) -> Either.left(v));
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +38,7 @@ public final class ComputationTree<V> {
     }
 
     public static <V> ComputationTree<ImmutableList<V>> list(Iterable<ComputationTree<V>> children) {
-        return new ComputationTree<ImmutableList<V>>(ImmutableList.<ComputationTree<?>>copyOf(children), (input) -> Either.left((ImmutableList<V>)input));
+        return new ComputationTree<>(ImmutableList.<ComputationTree<?>>copyOf(children), (input) -> Either.left((ImmutableList<V>)input));
     }
 
     public static <K, V> ComputationTree<ImmutableMap<K, V>> map(Map<K, ComputationTree<V>> map) {
@@ -55,14 +55,14 @@ public final class ComputationTree<V> {
     }
 
     public <W> ComputationTree<W> transform(final Function<? super V, W> fn) {
-        return new ComputationTree<W>(ImmutableList.<ComputationTree<?>>of(this), (input) -> {
+        return new ComputationTree<>(ImmutableList.<ComputationTree<?>>of(this), (input) -> {
             V v = getElementTyped(input, 0);
             return Either.left(fn.apply(v));
         });
     }
 
     public <W> ComputationTree<W> transformExec(Function<V, ComputationTree<W>> fn) {
-        return new ComputationTree<W>(ImmutableList.<ComputationTree<?>>of(this), (input) -> {
+        return new ComputationTree<>(ImmutableList.<ComputationTree<?>>of(this), (input) -> {
             V v = getElementTyped(input, 0);
             return Either.right(fn.apply(v));
         });
@@ -101,7 +101,7 @@ public final class ComputationTree<V> {
         R apply([[V# v#]]);
     }
     public static <[[V#]], R> ComputationTree<R> tuple([[ComputationTree<V#> t#]], Tuple#Processor<[[V#]], R> fn) {
-        return new ComputationTree<R>(ImmutableList.of([[t#]]), (input) -> {
+        return new ComputationTree<>(ImmutableList.of([[t#]]), (input) -> {
 {{              V# v# = getElementTyped(input, #);
 }}              return Either.left(fn.apply([[v#]]));
         });
@@ -121,7 +121,7 @@ EOF
         R apply(V0 v0, V1 v1);
     }
     public static <V0, V1, R> ComputationTree<R> tuple(ComputationTree<V0> t0, ComputationTree<V1> t1, Tuple2Processor<V0, V1, R> fn) {
-        return new ComputationTree<R>(ImmutableList.of(t0, t1), (input) -> {
+        return new ComputationTree<>(ImmutableList.of(t0, t1), (input) -> {
               V0 v0 = getElementTyped(input, 0);
               V1 v1 = getElementTyped(input, 1);
               return Either.left(fn.apply(v0, v1));
@@ -131,7 +131,7 @@ EOF
         R apply(V0 v0, V1 v1, V2 v2);
     }
     public static <V0, V1, V2, R> ComputationTree<R> tuple(ComputationTree<V0> t0, ComputationTree<V1> t1, ComputationTree<V2> t2, Tuple3Processor<V0, V1, V2, R> fn) {
-        return new ComputationTree<R>(ImmutableList.of(t0, t1, t2), (input) -> {
+        return new ComputationTree<>(ImmutableList.of(t0, t1, t2), (input) -> {
               V0 v0 = getElementTyped(input, 0);
               V1 v1 = getElementTyped(input, 1);
               V2 v2 = getElementTyped(input, 2);
@@ -142,7 +142,7 @@ EOF
         R apply(V0 v0, V1 v1, V2 v2, V3 v3);
     }
     public static <V0, V1, V2, V3, R> ComputationTree<R> tuple(ComputationTree<V0> t0, ComputationTree<V1> t1, ComputationTree<V2> t2, ComputationTree<V3> t3, Tuple4Processor<V0, V1, V2, V3, R> fn) {
-        return new ComputationTree<R>(ImmutableList.of(t0, t1, t2, t3), (input) -> {
+        return new ComputationTree<>(ImmutableList.of(t0, t1, t2, t3), (input) -> {
               V0 v0 = getElementTyped(input, 0);
               V1 v1 = getElementTyped(input, 1);
               V2 v2 = getElementTyped(input, 2);
@@ -154,7 +154,7 @@ EOF
         R apply(V0 v0, V1 v1, V2 v2, V3 v3, V4 v4);
     }
     public static <V0, V1, V2, V3, V4, R> ComputationTree<R> tuple(ComputationTree<V0> t0, ComputationTree<V1> t1, ComputationTree<V2> t2, ComputationTree<V3> t3, ComputationTree<V4> t4, Tuple5Processor<V0, V1, V2, V3, V4, R> fn) {
-        return new ComputationTree<R>(ImmutableList.of(t0, t1, t2, t3, t4), (input) -> {
+        return new ComputationTree<>(ImmutableList.of(t0, t1, t2, t3, t4), (input) -> {
               V0 v0 = getElementTyped(input, 0);
               V1 v1 = getElementTyped(input, 1);
               V2 v2 = getElementTyped(input, 2);

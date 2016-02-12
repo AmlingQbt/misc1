@@ -48,14 +48,14 @@ public class ProcessHelper extends StructBuilder<ProcessHelperStruct, ProcessHel
     static {
         ImmutableList.Builder<StructKey<ProcessHelperStruct, ?, ?>> b = ImmutableList.builder();
 
-        b.add(DIR = new SimpleStructKey<ProcessHelperStruct, Path>("dir"));
-        b.add(CMD = new SimpleStructKey<ProcessHelperStruct, ImmutableList<String>>("cmd"));
-        b.add(ENV = new SimpleStructKey<ProcessHelperStruct, ImmutableSalvagingMap<String, String>>("env"));
-        b.add(IN = new SimpleStructKey<ProcessHelperStruct, ProcessBuilder.Redirect>("in", ProcessBuilder.Redirect.PIPE));
-        b.add(OUT = new SimpleStructKey<ProcessHelperStruct, ProcessBuilder.Redirect>("out", ProcessBuilder.Redirect.PIPE));
-        b.add(ERR = new SimpleStructKey<ProcessHelperStruct, ProcessBuilder.Redirect>("err", ProcessBuilder.Redirect.PIPE));
+        b.add(DIR = new SimpleStructKey<>("dir"));
+        b.add(CMD = new SimpleStructKey<>("cmd"));
+        b.add(ENV = new SimpleStructKey<>("env"));
+        b.add(IN = new SimpleStructKey<>("in", ProcessBuilder.Redirect.PIPE));
+        b.add(OUT = new SimpleStructKey<>("out", ProcessBuilder.Redirect.PIPE));
+        b.add(ERR = new SimpleStructKey<>("err", ProcessBuilder.Redirect.PIPE));
 
-        TYPE = new StructType<ProcessHelperStruct, ProcessHelper>(b.build(), ProcessHelperStruct::new, ProcessHelper::new);
+        TYPE = new StructType<>(b.build(), ProcessHelperStruct::new, ProcessHelper::new);
     }
 
     public ProcessHelper inheritInput() {

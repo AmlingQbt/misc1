@@ -47,7 +47,7 @@ public final class AsyncUpdaters {
 
         @Override
         public void enqueue(A event) {
-            delegate.enqueue(new MyAsyncUpdate<A>(event));
+            delegate.enqueue(new MyAsyncUpdate<>(event));
         }
 
         @Override
@@ -62,29 +62,29 @@ public final class AsyncUpdaters {
     }
 
     public static <K, A extends KeyedAsyncUpdate<K, A>> KeyedAsyncUpdater<K, A> forKeyedSingleThreaded(String name) {
-        return new SingleThreadedAsyncUpdater<K, A>(name);
+        return new SingleThreadedAsyncUpdater<>(name);
     }
 
     public static <K, A extends KeyedAsyncUpdate<K, A>> KeyedAsyncUpdater<K, A> forKeyedMultiThreaded(String name) {
-        return new MultiThreadedAsyncUpdater<K, A>(name);
+        return new MultiThreadedAsyncUpdater<>(name);
     }
 
     public static <K, A extends KeyedAsyncUpdate<K, A>> KeyedAsyncUpdater<K, A> forKeyedMultiThreaded(Executor executor) {
-        return new MultiThreadedAsyncUpdater<K, A>(executor);
+        return new MultiThreadedAsyncUpdater<>(executor);
     }
 
     public static <A extends KeylessAsyncUpdate<A>> KeylessAsyncUpdater<A> forKeylessSingleThreaded(String name) {
         KeyedAsyncUpdater<NoKey, MyAsyncUpdate<A>> delegate = forKeyedSingleThreaded(name);
-        return new MyKeylessAsyncUpdater<A>(delegate);
+        return new MyKeylessAsyncUpdater<>(delegate);
     }
 
     public static <A extends KeylessAsyncUpdate<A>> KeylessAsyncUpdater<A> forKeylessMultiThreaded(String name) {
         KeyedAsyncUpdater<NoKey, MyAsyncUpdate<A>> delegate = forKeyedMultiThreaded(name);
-        return new MyKeylessAsyncUpdater<A>(delegate);
+        return new MyKeylessAsyncUpdater<>(delegate);
     }
 
     public static <A extends KeylessAsyncUpdate<A>> KeylessAsyncUpdater<A> forKeylessMultiThreaded(Executor executor) {
         KeyedAsyncUpdater<NoKey, MyAsyncUpdate<A>> delegate = forKeyedMultiThreaded(executor);
-        return new MyKeylessAsyncUpdater<A>(delegate);
+        return new MyKeylessAsyncUpdater<>(delegate);
     }
 }

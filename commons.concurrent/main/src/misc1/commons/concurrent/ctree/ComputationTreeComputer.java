@@ -170,7 +170,7 @@ public final class ComputationTreeComputer {
             return already;
         }
         ImmutableList<Status<?>> children = ImmutableList.copyOf(Iterables.transform(tree.children, this::vivifyHelper));
-        Status<V> ret = new Status<V>(tree, children);
+        Status<V> ret = new Status<>(tree, children);
         // avoid doing anything even marginally interesting under synch(lock)
         e.execute(() -> ret.check());
         statuses.put(tree, ret);

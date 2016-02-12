@@ -45,7 +45,7 @@ public final class FreeScope implements AutoCloseable {
     }
 
     public <RR extends RawResource, R extends Resource<R>> R initial(ResourceType<RR, R> type, RR raw) {
-        return new Instance<RR, R>(type, raw).onCopyInto.apply(this);
+        return new Instance<>(type, raw).onCopyInto.apply(this);
     }
 
     private List<Instance<?, ?>> is = Lists.newLinkedList();

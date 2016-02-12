@@ -8,10 +8,10 @@ public final class OptionsFragment<O, R> {
     }
 
     public OptionsFragment<O, R> helpDesc(String helpDesc) {
-        return new OptionsFragment<O, R>(delegate.helpDesc(helpDesc));
+        return new OptionsFragment<>(delegate.helpDesc(helpDesc));
     }
 
     public <R2> OptionsFragment<O, R2> transform(OptionsTransform<R, R2> f) {
-        return new OptionsFragment<O, R2>(delegate.transform(f));
+        return new OptionsFragment<>(delegate.transform(f));
     }
 }

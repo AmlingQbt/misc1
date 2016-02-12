@@ -34,14 +34,14 @@ public class ArrayTreeLockPath<K> implements TreeLockPath<K, ArrayTreeLockPath<K
         if(start == end) {
             return null;
         }
-        return new ArrayTreeLockPath<K>(path[start], of(path, start + 1, end));
+        return new ArrayTreeLockPath<>(path[start], of(path, start + 1, end));
     }
 
     public static <K> ArrayTreeLockPath<K> of(Iterator<K> iterator) {
         if(!iterator.hasNext()) {
             return null;
         }
-        return new ArrayTreeLockPath<K>(iterator.next(), of(iterator));
+        return new ArrayTreeLockPath<>(iterator.next(), of(iterator));
     }
 
     public static <K> ArrayTreeLockPath<K> of(Iterable<K> iterable) {

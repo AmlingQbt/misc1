@@ -65,8 +65,8 @@ public class ImportThirdParty extends QbtCommand<ImportThirdParty.Options> {
     @QbtCommandName("importThirdParty")
     public static interface Options extends QbtCommandOptions {
         public static final OptionsLibrary<Options> o = OptionsLibrary.of();
-        public final ConfigOptionsDelegate<Options> config = new ConfigOptionsDelegate<Options>();
-        public final ManifestOptionsDelegate<Options> manifest = new ManifestOptionsDelegate<Options>();
+        public final ConfigOptionsDelegate<Options> config = new ConfigOptionsDelegate<>();
+        public final ManifestOptionsDelegate<Options> manifest = new ManifestOptionsDelegate<>();
         public static final OptionsFragment<Options, String> destinationRepo = o.oneArg("repo").transform(o.singleton("3p")).helpDesc("Repository to place the modules in when they don't already exist");
     }
 

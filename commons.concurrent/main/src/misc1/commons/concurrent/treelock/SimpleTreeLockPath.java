@@ -20,6 +20,6 @@ public class SimpleTreeLockPath<K, PR> implements TreeLockPath<K, PR> {
     }
 
     public static <K, PR> SimpleTreeLockPath<K, PR> of(K car, PR cdr) {
-        return new SimpleTreeLockPath<K, PR>(car, cdr);
+        return new SimpleTreeLockPath<>(car, cdr);
     }
 }

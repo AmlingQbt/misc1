@@ -42,7 +42,7 @@ public abstract class StronglyConnectedComponents<V> {
     }
 
     private class Pass {
-        private final Stack<V> stack = new Stack<V>();
+        private final Stack<V> stack = new Stack<>();
         private final Map<V, Integer> indices = Maps.newHashMap();
         private int index = 0;
 
@@ -80,7 +80,7 @@ public abstract class StronglyConnectedComponents<V> {
                         break;
                     }
                 }
-                Component<V> c = new Component<V>(b.build());
+                Component<V> c = new Component<>(b.build());
                 for(V w : c.vertices) {
                     components.put(w, c);
                 }

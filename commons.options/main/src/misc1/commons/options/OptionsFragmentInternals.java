@@ -14,7 +14,7 @@ class OptionsFragmentInternals<O, M, R> {
     }
 
     OptionsFragmentInternals<O, M, R> helpDesc(String newHelpDesc) {
-        return new OptionsFragmentInternals<O, M, R>(matcher, process, newHelpDesc);
+        return new OptionsFragmentInternals<>(matcher, process, newHelpDesc);
     }
 
     <R2> OptionsFragmentInternals<O, M, R2> transform(OptionsTransform<R, R2> newProcess) {
@@ -22,7 +22,7 @@ class OptionsFragmentInternals<O, M, R> {
             R intermediate = process.apply(helpDesc, input);
             return newProcess.apply(helpDesc, intermediate);
         };
-        return new OptionsFragmentInternals<O, M, R2>(matcher, composedProcess, helpDesc);
+        return new OptionsFragmentInternals<>(matcher, composedProcess, helpDesc);
     }
 
     int getPriority() {

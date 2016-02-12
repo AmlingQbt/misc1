@@ -10,10 +10,10 @@ import org.junit.Test;
 public class SingleThreadedAsyncUpdaterTests {
     @Test
     public void testSimple() throws InterruptedException {
-        SingleThreadedAsyncUpdater<String, BaseUpdate> au = new SingleThreadedAsyncUpdater<String, BaseUpdate>("testSimple");
+        SingleThreadedAsyncUpdater<String, BaseUpdate> au = new SingleThreadedAsyncUpdater<>("testSimple");
 
         TestLatches latches = new TestLatches();
-        List<String> failTracker = new LinkedList<String>();
+        List<String> failTracker = new LinkedList<>();
 
         AtomicInteger a = new AtomicInteger(0);
         AtomicInteger aCount = new AtomicInteger(0);
@@ -57,10 +57,10 @@ public class SingleThreadedAsyncUpdaterTests {
 
     @Test
     public void testException() throws InterruptedException {
-        SingleThreadedAsyncUpdater<String, BaseUpdate> au = new SingleThreadedAsyncUpdater<String, BaseUpdate>("testException");
+        SingleThreadedAsyncUpdater<String, BaseUpdate> au = new SingleThreadedAsyncUpdater<>("testException");
 
         TestLatches latches = new TestLatches();
-        List<String> failTracker = new LinkedList<String>();
+        List<String> failTracker = new LinkedList<>();
 
         AtomicInteger a = new AtomicInteger(0);
         AtomicInteger aCount = new AtomicInteger(0);

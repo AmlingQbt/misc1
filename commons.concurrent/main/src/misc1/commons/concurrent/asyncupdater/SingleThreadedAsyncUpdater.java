@@ -16,7 +16,7 @@ import misc1.commons.concurrent.misc.PollingServiceThread;
  */
 final class SingleThreadedAsyncUpdater<K, A extends KeyedAsyncUpdate<K, A>> implements KeyedAsyncUpdater<K, A> {
     private final Object lock = new Object() { /* anonymous for more useful class name */ };
-    private final Queue<K> keys = new LinkedList<K>();
+    private final Queue<K> keys = new LinkedList<>();
     private final Map<K, A> eventMap = Maps.newHashMap();
     private boolean threadWaiting = false;
 

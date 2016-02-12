@@ -38,7 +38,7 @@ public class TreeLockTests {
     }
 
     private void testBlockOneWay(final String p1, final String p2) throws InterruptedException {
-        final ArrayTreeLock<String> l = new ArrayTreeLock<String>();
+        final ArrayTreeLock<String> l = new ArrayTreeLock<>();
         TestThreads tt = new TestThreads();
         final TestLatches tl = new TestLatches();
         final AtomicBoolean p2Locked = new AtomicBoolean(false);
@@ -64,7 +64,7 @@ public class TreeLockTests {
     }
 
     private void testNoBlockOneWay(final String p1, final String p2) throws InterruptedException {
-        final ArrayTreeLock<String> l = new ArrayTreeLock<String>();
+        final ArrayTreeLock<String> l = new ArrayTreeLock<>();
         TestThreads tt = new TestThreads();
         final TestLatches tl = new TestLatches();
         tt.start(() -> {

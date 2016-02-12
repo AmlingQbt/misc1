@@ -34,7 +34,7 @@ public abstract class Either<L, R> {
 
         @Override
         public <L2, R2> Either<L2, R2> transform(Function<L, L2> leftFunction, Function<R, R2> rightFunction) {
-            return new EitherLeft<L2, R2>(leftFunction.apply(l));
+            return new EitherLeft<>(leftFunction.apply(l));
         }
 
         @Override
@@ -44,7 +44,7 @@ public abstract class Either<L, R> {
     }
 
     public static <L, R> Either<L, R> left(L l) {
-        return new EitherLeft<L, R>(l);
+        return new EitherLeft<>(l);
     }
 
     private static final class EitherRight<L, R> extends Either<L, R> {
@@ -59,7 +59,7 @@ public abstract class Either<L, R> {
 
         @Override
         public <L2, R2> Either<L2, R2> transform(Function<L, L2> leftFunction, Function<R, R2> rightFunction) {
-            return new EitherRight<L2, R2>(rightFunction.apply(r));
+            return new EitherRight<>(rightFunction.apply(r));
         }
 
         @Override
@@ -69,7 +69,7 @@ public abstract class Either<L, R> {
     }
 
     public static <L, R> Either<L, R> right(R r) {
-        return new EitherRight<L, R>(r);
+        return new EitherRight<>(r);
     }
 
     public L leftOrNull() {

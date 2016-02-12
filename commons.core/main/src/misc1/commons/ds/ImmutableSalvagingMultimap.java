@@ -65,7 +65,7 @@ public class ImmutableSalvagingMultimap<K, V> {
         return of(valueMap, keyMap);
     }
 
-    private static final ImmutableSalvagingMultimap<Object, Object> EMPTY = new ImmutableSalvagingMultimap<Object, Object>();
+    private static final ImmutableSalvagingMultimap<Object, Object> EMPTY = new ImmutableSalvagingMultimap<>();
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static <K, V> ImmutableSalvagingMultimap<K, V> of() {
         return (ImmutableSalvagingMultimap) EMPTY;
@@ -107,6 +107,6 @@ public class ImmutableSalvagingMultimap<K, V> {
     }
 
     private static <A, B> ImmutableSalvagingMultimap<A, B> of(ImmutableSalvagingMap<A, ImmutableSalvagingSet<B>> keyMap, ImmutableSalvagingMap<B, ImmutableSalvagingSet<A>> valueMap) {
-        return new ImmutableSalvagingMultimap<A, B>(keyMap, valueMap);
+        return new ImmutableSalvagingMultimap<>(keyMap, valueMap);
     }
 }

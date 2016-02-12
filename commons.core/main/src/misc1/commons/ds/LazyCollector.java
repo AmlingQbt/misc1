@@ -19,14 +19,14 @@ public final class LazyCollector<T> {
         this.delegates = delegates != null ? delegates : ImmutableList.<LazyCollector<T>>of();
     }
 
-    private static final LazyCollector<Object> EMPTY = new LazyCollector<Object>(null, null);
+    private static final LazyCollector<Object> EMPTY = new LazyCollector<>(null, null);
     @SuppressWarnings("unchecked")
     public static <T> LazyCollector<T> of() {
         return (LazyCollector<T>)EMPTY;
     }
 
     public static <T> LazyCollector<T> of(Iterable<T> ts) {
-        return new LazyCollector<T>(ImmutableList.copyOf(ts), null);
+        return new LazyCollector<>(ImmutableList.copyOf(ts), null);
     }
 
     public static <T> LazyCollector<T> of(final T t) {
@@ -39,7 +39,7 @@ public final class LazyCollector<T> {
             return LazyCollector.of(input);
         }
     }
-    private static final OfElementFunction<Object> OF_ELEMENT_FUNCTION = new OfElementFunction<Object>();
+    private static final OfElementFunction<Object> OF_ELEMENT_FUNCTION = new OfElementFunction<>();
     @SuppressWarnings("unchecked")
     public static <T> Function<T, LazyCollector<T>> ofElementFunction() {
         return (OfElementFunction<T>)OF_ELEMENT_FUNCTION;

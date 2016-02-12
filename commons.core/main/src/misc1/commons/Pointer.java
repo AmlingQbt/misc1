@@ -27,6 +27,6 @@ public final class Pointer<V> {
     }
 
     public static <V> Pointer<V> of(V value) {
-        return new Pointer<V>(value);
+        return new Pointer<>(value);
     }
 }

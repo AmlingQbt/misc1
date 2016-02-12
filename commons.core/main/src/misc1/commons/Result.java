@@ -61,7 +61,7 @@ public abstract class Result<VTYPE> implements Serializable {
 
         @Override
         public <VTYPE2> Result<VTYPE2> transform(Function<VTYPE, VTYPE2> function) {
-            return new SuccessResult<VTYPE2>(function.apply(ret));
+            return new SuccessResult<>(function.apply(ret));
         }
     }
 
@@ -119,16 +119,16 @@ public abstract class Result<VTYPE> implements Serializable {
 
         @Override
         public <VTYPE2> Result<VTYPE2> transform(Function<VTYPE, VTYPE2> function) {
-            return new FailureResult<VTYPE2>(t);
+            return new FailureResult<>(t);
         }
     }
 
     public static <VTYPE> Result<VTYPE> newSuccess(VTYPE ret) {
-        return new SuccessResult<VTYPE>(ret);
+        return new SuccessResult<>(ret);
     }
 
     public static <VTYPE> Result<VTYPE> newFailure(Throwable t) {
-        return new FailureResult<VTYPE>(t);
+        return new FailureResult<>(t);
     }
 
     private static final Result<Object> NULL_RESULT = Result.<Object>newSuccess(null);

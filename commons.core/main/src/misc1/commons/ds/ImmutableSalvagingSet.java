@@ -31,12 +31,12 @@ public class ImmutableSalvagingSet<T> implements Iterable<T> {
 
     public ImmutableSalvagingSet<T> add(T key) {
         Pair<MapNode<T, ObjectUtils.Null>, ObjectUtils.Null> pair = MapNode.put(root, key, ObjectUtils.NULL);
-        return new ImmutableSalvagingSet<T>(pair.getLeft());
+        return new ImmutableSalvagingSet<>(pair.getLeft());
     }
 
     public ImmutableSalvagingSet<T> remove(T key) {
         Pair<MapNode<T, ObjectUtils.Null>, ObjectUtils.Null> pair = MapNode.remove(root, key);
-        return new ImmutableSalvagingSet<T>(pair.getLeft());
+        return new ImmutableSalvagingSet<>(pair.getLeft());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ImmutableSalvagingSet<T> implements Iterable<T> {
     }
 
     public static <T> ImmutableSalvagingSet<T> of() {
-        return new ImmutableSalvagingSet<T>();
+        return new ImmutableSalvagingSet<>();
     }
 
     @Override

@@ -106,7 +106,7 @@ public class OptionsResults<O> {
         }
 
         private <M, R> void addStatus(OptionsFragmentInternals<? super O, M, R> optionsFragment) {
-            statuses.put(optionsFragment, new OptionsFragmentStatus<M, R>(optionsFragment));
+            statuses.put(optionsFragment, new OptionsFragmentStatus<>(optionsFragment));
         }
 
         @SuppressWarnings("unchecked")
@@ -144,12 +144,12 @@ public class OptionsResults<O> {
                 throw err;
             }
 
-            return new OptionsResults<O>(b.build());
+            return new OptionsResults<>(b.build());
         }
     }
 
     public static <O> Builder<O> builder(Class<O> clazz) {
-        return new Builder<O>(clazz);
+        return new Builder<>(clazz);
     }
 
     private static <O> ImmutableList<OptionsFragmentInternals<? super O, ?, ?>> getFragmentsFromInterface(Class<O> clazz) {

@@ -78,7 +78,7 @@ public abstract class Maybe<T> implements Serializable {
         }
     }
 
-    private static final Maybe<Object> NOT = new MaybeNot<Object>();
+    private static final Maybe<Object> NOT = new MaybeNot<>();
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static <T> Maybe<T> not() {
         return (Maybe)NOT;
@@ -91,7 +91,7 @@ public abstract class Maybe<T> implements Serializable {
     }
 
     public static <T> Maybe<T> of(T t) {
-        return new MaybeOf<T>(t);
+        return new MaybeOf<>(t);
     }
 
     public abstract boolean isPresent();

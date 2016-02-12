@@ -39,7 +39,7 @@ public class ImmutableSalvagingMap<K, V> {
 
     public Pair<ImmutableSalvagingMap<K, V>, V> put(K key, V value) {
         Pair<MapNode<K, V>, V> pair = MapNode.put(root, key, value);
-        return Pair.of(new ImmutableSalvagingMap<K, V>(pair.getLeft()), pair.getRight());
+        return Pair.of(new ImmutableSalvagingMap<>(pair.getLeft()), pair.getRight());
     }
 
     public ImmutableSalvagingMap<K, V> simplePut(K key, V value) {
@@ -48,7 +48,7 @@ public class ImmutableSalvagingMap<K, V> {
 
     public Pair<ImmutableSalvagingMap<K, V>, V> remove(K key) {
         Pair<MapNode<K, V>, V> pair = MapNode.remove(root, key);
-        return Pair.of(new ImmutableSalvagingMap<K, V>(pair.getLeft()), pair.getRight());
+        return Pair.of(new ImmutableSalvagingMap<>(pair.getLeft()), pair.getRight());
     }
 
     public ImmutableSalvagingMap<K, V> simpleRemove(K key) {
@@ -71,7 +71,7 @@ public class ImmutableSalvagingMap<K, V> {
         return Collections2.transform(MapNode.entries(root), Map.Entry<K, V>::getKey);
     }
 
-    private static final ImmutableSalvagingMap<Object, Object> EMPTY = new ImmutableSalvagingMap<Object, Object>();
+    private static final ImmutableSalvagingMap<Object, Object> EMPTY = new ImmutableSalvagingMap<>();
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static <K, V> ImmutableSalvagingMap<K, V> of() {
         return (ImmutableSalvagingMap) EMPTY;

@@ -12,7 +12,7 @@ public final class OptionsLibrary<O> {
     }
 
     public static <O> OptionsLibrary<O> of() {
-        return new OptionsLibrary<O>();
+        return new OptionsLibrary<>();
     }
 
     private static void buildHelpDesc(StringBuilder sb, String... names) {
@@ -190,8 +190,8 @@ public final class OptionsLibrary<O> {
     }
 
     public <M> OptionsFragment<O, ImmutableList<M>> of(OptionsMatcher<M> matcher) {
-        OptionsFragmentInternals<O, M, ImmutableList<M>> delegate = new OptionsFragmentInternals<O, M, ImmutableList<M>>(matcher, (helpDesc, input) -> input, null);
-        return new OptionsFragment<O, ImmutableList<M>>(delegate);
+        OptionsFragmentInternals<O, M, ImmutableList<M>> delegate = new OptionsFragmentInternals<>(matcher, (helpDesc, input) -> input, null);
+        return new OptionsFragment<>(delegate);
     }
 
     public OptionsFragment<O, ImmutableList<String>> unparsed(boolean hard) {
