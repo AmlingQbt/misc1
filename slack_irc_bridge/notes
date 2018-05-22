@@ -1,0 +1,11 @@
+rough arch ideas
+    each client has main thread and queue of stuff
+        client thread owns/watches socket thread (finally in socket thread puts end event in client queue)
+        client thread owns/watches "websocket" thread (but this can actually come and go)
+            this should maybe be "logged in context" or something since it may want to hold other stuff
+            like ID/name cache (?)
+        client follows queue of client things and responds accordingly
+            watch out: websocket events from a dead websocket thread should be dropped, worried async websocket client nonsense will continue to call back after destruction of one type or another
+        client thread synchronously makes slack calls (bleh, but it's far simpler)
+other notes:
+    make sure to debug log all websocket traffic considering we'll be wanting to dig up example events at some point

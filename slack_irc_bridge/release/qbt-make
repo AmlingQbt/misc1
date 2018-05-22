@@ -1,0 +1,9 @@
+#!/bin/bash
+
+eval export JAVA_HOME=\$JAVA_${QBT_ENV_JDK}_HOME
+
+set -e
+
+$INPUT_ARTIFACTS_DIR/weak/qbt_fringe.wrapper_generator.release/strong/qbt_fringe.wrapper_generator.release/bin/wrapper_generator $INPUT_ARTIFACTS_DIR/weak/misc1.slack_irc_bridge.main/strong $OUTPUT_ARTIFACTS_DIR \
+    slackIrcBridge qbt.QbtMain \
+
