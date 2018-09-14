@@ -366,10 +366,12 @@ public class Client extends Thread {
 
             case CHANNEL_OR_GROUP: {
                 String channelName = channelInfo.getRight();
-                if(joined.contains("#" + channelName)) {
-                    for(String line : lines) {
-                        channelMessage(slack.requireNameByUserId(fromUserId), channelName, line);
-                    }
+                String channel = "#" + channelName;
+                if(joined.add(channel)) {
+                    put(nick, "JOIN", channel);
+                }
+                for(String line : lines) {
+                    put(slack.requireNameByUserId(fromUserId), "PRIVMSG", channel, line);
                 }
                 break;
             }
@@ -493,10 +495,6 @@ public class Client extends Thread {
             return;
         }
         put(from, "PRIVMSG", nick, msg);
-    }
-
-    private void channelMessage(String from, String channelName, String msg) {
-        put(from, "PRIVMSG", "#" + channelName, msg);
     }
 
     private void put(String prefix, String command, String... args) {
