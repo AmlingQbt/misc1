@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -409,7 +410,12 @@ public abstract class ClientSlack {
     }
 
     private static JsonObject req(String token, String method, ImmutableMap<String, String> args) {
-        try(CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom();
+        requestConfigBuilder = requestConfigBuilder.setConnectTimeout(30 * 1000);
+        requestConfigBuilder = requestConfigBuilder.setSocketTimeout(30 * 1000);
+        RequestConfig requestConfig = requestConfigBuilder.build();
+
+        try(CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig).build()) {
             HttpUriRequest req;
             if(args.isEmpty()) {
                 req = new HttpGet("https://palantir.slack.com/api/" + method + "?token=" + token);
